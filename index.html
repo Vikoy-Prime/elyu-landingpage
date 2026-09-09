@@ -350,7 +350,7 @@
             cursor: pointer;
         }
 
-        /* --- Photo Controls & Lock Overlay --- */
+        /* --- Invisible by Default Photo Controls (Visible on Hover) --- */
         .photo-controls-overlay {
             position: absolute;
             top: 10px;
@@ -358,10 +358,20 @@
             display: flex;
             gap: 6px;
             z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        /* Show buttons when hovering hero or card */
+        .hero:hover .photo-controls-overlay,
+        .card-img-container:hover .photo-controls-overlay {
+            opacity: 1;
+            visibility: visible;
         }
 
         .photo-btn {
-            background: rgba(10, 25, 47, 0.75);
+            background: rgba(10, 25, 47, 0.85);
             backdrop-filter: blur(4px);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -377,7 +387,7 @@
         }
 
         .photo-btn:hover {
-            background: rgba(10, 25, 47, 0.95);
+            background: rgba(10, 25, 47, 1);
             transform: translateY(-1px);
         }
 
@@ -758,10 +768,10 @@
                     <!-- Photo Controls for Hero -->
                     <div class="photo-controls-overlay">
                         <button class="photo-btn" id="hero-img-btn" onclick="openPhotoModal('hero-img')">
-                            <i class="fa-solid fa-camera"></i> Change Photo
+                            <i class="fa-solid fa-camera"></i> Change
                         </button>
                         <button class="photo-btn" id="hero-img-lock" onclick="toggleLock('hero-img')">
-                            <i class="fa-solid fa-lock-open"></i> Unlock
+                            <i class="fa-solid fa-key"></i> Key Lock
                         </button>
                     </div>
 
@@ -812,17 +822,17 @@
                     <a class="view-all-link" onclick="switchPage('spots-page')">View All <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
 
+                <!-- ALL 6 TOURIST SPOTS RESTORED -->
                 <div class="card-grid">
-                    <!-- Card 1 -->
+                    <!-- Spot 1 -->
                     <div class="card">
                         <div class="card-img-container">
-                            <!-- Photo Controls for Card Image -->
                             <div class="photo-controls-overlay">
                                 <button class="photo-btn" id="spot-img-1-btn" onclick="openPhotoModal('spot-img-1')">
                                     <i class="fa-solid fa-camera"></i> Change
                                 </button>
                                 <button class="photo-btn" id="spot-img-1-lock" onclick="toggleLock('spot-img-1')">
-                                    <i class="fa-solid fa-lock-open"></i> Unlock
+                                    <i class="fa-solid fa-key"></i> Key Lock
                                 </button>
                             </div>
                             <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-1" alt="San Juan Surf Beach">
@@ -833,6 +843,126 @@
                             <p class="card-desc">Surfing, beach vibes, and laid-back cafes by the coast. Capital of Northern Luzon surf culture.</p>
                             <div class="card-footer">
                                 <span class="card-rating"><i class="fa-solid fa-star"></i> 4.8 (1.2k)</span>
+                                <span class="card-link" onclick="switchPage('spots-page')">Details <i class="fa-solid fa-chevron-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 2 -->
+                    <div class="card">
+                        <div class="card-img-container">
+                            <div class="photo-controls-overlay">
+                                <button class="photo-btn" id="spot-img-2-btn" onclick="openPhotoModal('spot-img-2')">
+                                    <i class="fa-solid fa-camera"></i> Change
+                                </button>
+                                <button class="photo-btn" id="spot-img-2-lock" onclick="toggleLock('spot-img-2')">
+                                    <i class="fa-solid fa-key"></i> Key Lock
+                                </button>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-2" alt="Tangadan Falls">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Tangadan Falls</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Gabriel, La Union</div>
+                            <p class="card-desc">A dramatic two-tier waterfall system hidden in the lush hills, perfect for trekking and bamboo rafting.</p>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.7 (950)</span>
+                                <span class="card-link" onclick="switchPage('spots-page')">Details <i class="fa-solid fa-chevron-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 3 -->
+                    <div class="card">
+                        <div class="card-img-container">
+                            <div class="photo-controls-overlay">
+                                <button class="photo-btn" id="spot-img-3-btn" onclick="openPhotoModal('spot-img-3')">
+                                    <i class="fa-solid fa-camera"></i> Change
+                                </button>
+                                <button class="photo-btn" id="spot-img-3-lock" onclick="toggleLock('spot-img-3')">
+                                    <i class="fa-solid fa-key"></i> Key Lock
+                                </button>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-3" alt="Ma-Cho Temple">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Ma-Cho Temple</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando City</div>
+                            <p class="card-desc">A majestic Taoist temple overlooking San Fernando Harbor, honoring the Chinese sea goddess Mazu.</p>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.6 (820)</span>
+                                <span class="card-link" onclick="switchPage('spots-page')">Details <i class="fa-solid fa-chevron-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 4 -->
+                    <div class="card">
+                        <div class="card-img-container">
+                            <div class="photo-controls-overlay">
+                                <button class="photo-btn" id="spot-img-4-btn" onclick="openPhotoModal('spot-img-4')">
+                                    <i class="fa-solid fa-camera"></i> Change
+                                </button>
+                                <button class="photo-btn" id="spot-img-4-lock" onclick="toggleLock('spot-img-4')">
+                                    <i class="fa-solid fa-key"></i> Key Lock
+                                </button>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-4" alt="Poro Point Lighthouse">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Poro Point Lighthouse</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando City</div>
+                            <p class="card-desc">Historic coastal landmark offer breathtaking ocean horizons and scenic sunset view spots.</p>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.5 (610)</span>
+                                <span class="card-link" onclick="switchPage('spots-page')">Details <i class="fa-solid fa-chevron-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 5 -->
+                    <div class="card">
+                        <div class="card-img-container">
+                            <div class="photo-controls-overlay">
+                                <button class="photo-btn" id="spot-img-5-btn" onclick="openPhotoModal('spot-img-5')">
+                                    <i class="fa-solid fa-camera"></i> Change
+                                </button>
+                                <button class="photo-btn" id="spot-img-5-lock" onclick="toggleLock('spot-img-5')">
+                                    <i class="fa-solid fa-key"></i> Key Lock
+                                </button>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1509233725247-49e657c54213?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-5" alt="Urbiztondo Beach Walk">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Urbiztondo Beach Walk</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan, La Union</div>
+                            <p class="card-desc">The center of food, music, artisan shops, and beachside nightlife along the coast.</p>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.9 (1.5k)</span>
+                                <span class="card-link" onclick="switchPage('spots-page')">Details <i class="fa-solid fa-chevron-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot 6 -->
+                    <div class="card">
+                        <div class="card-img-container">
+                            <div class="photo-controls-overlay">
+                                <button class="photo-btn" id="spot-img-6-btn" onclick="openPhotoModal('spot-img-6')">
+                                    <i class="fa-solid fa-camera"></i> Change
+                                </button>
+                                <button class="photo-btn" id="spot-img-6-lock" onclick="toggleLock('spot-img-6')">
+                                    <i class="fa-solid fa-key"></i> Key Lock
+                                </button>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-6" alt="Bauang Grape Farms">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Bauang Grape Farms</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> Bauang, La Union</div>
+                            <p class="card-desc">Famous vineyard picking tours, fresh fruit harvests, and homemade local grape wines.</p>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.6 (740)</span>
                                 <span class="card-link" onclick="switchPage('spots-page')">Details <i class="fa-solid fa-chevron-right"></i></span>
                             </div>
                         </div>
@@ -878,7 +1008,7 @@
                 <input type="url" id="urlInput" class="form-input" placeholder="https://example.com/photo.jpg">
             </div>
             <div style="display: flex; gap: 10px; margin-top: 1.5rem;">
-                <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="applyPhotoChange()">Apply & Lock Photo</button>
+                <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="applyPhotoChange()">Apply & Key Lock</button>
             </div>
         </div>
     </div>
@@ -945,7 +1075,7 @@
             if (changeBtn && lockBtn) {
                 changeBtn.disabled = true;
                 lockBtn.classList.add('locked');
-                lockBtn.innerHTML = '<i class="fa-solid fa-lock"></i> Locked';
+                lockBtn.innerHTML = '<i class="fa-solid fa-key"></i> Locked';
             }
         }
 
@@ -959,7 +1089,7 @@
                 if (changeBtn) changeBtn.disabled = false;
                 if (lockBtn) {
                     lockBtn.classList.remove('locked');
-                    lockBtn.innerHTML = '<i class="fa-solid fa-lock-open"></i> Unlock';
+                    lockBtn.innerHTML = '<i class="fa-solid fa-key"></i> Key Lock';
                 }
             } else {
                 // Lock
