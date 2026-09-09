@@ -7,7 +7,7 @@
     <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=scale" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -909,7 +909,7 @@
 
         @media (max-width: 768px) {
             .nav-links {
-                display: none; /* Mobile Menu toggle required */
+                display: none;
                 position: absolute;
                 top: 100%;
                 left: 0;
@@ -1030,7 +1030,7 @@
                         <div class="card-body">
                             <div class="card-title">San Juan Surf Beach</div>
                             <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan, La Union</div>
-                            <p class="card-desc">Surfing, beach vibes and laid-back cafes by the coast. Capital of Northern Luzon surf culture.</p>
+                            <p class="card-desc">Surfing, beach vibes, and laid-back cafes by the coast. Capital of Northern Luzon surf culture.</p>
                             <div class="card-footer">
                                 <span class="card-rating"><i class="fa-solid fa-star"></i> 4.8 (1.2k)</span>
                                 <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
@@ -1063,7 +1063,7 @@
                         </div>
                         <div class="card-body">
                             <div class="card-title">Baluarte Watchtower</div>
-                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> Bacnotan / Luna, La Union</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> Luna, La Union</div>
                             <p class="card-desc">A historic Spanish-era watchtower site with panoramic oceanfront views and pebble stone shores.</p>
                             <div class="card-footer">
                                 <span class="card-rating"><i class="fa-solid fa-star"></i> 4.6 (654)</span>
@@ -1425,15 +1425,15 @@
                     <!-- Hotel 1 -->
                     <div class="card">
                         <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" class="card-img" id="h-img-1" alt="Thunderbird Resorts">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" class="card-img" id="h-img-1" alt="Thunderbird Resorts & Casinos - Poro Point">
                             <button class="change-photo-btn" onclick="triggerPhotoUpload('h-img-1')"><i class="fa-solid fa-camera"></i> Change</button>
                         </div>
                         <div class="card-body">
-                            <div class="card-title">Thunderbird Resorts Poro Point</div>
+                            <div class="card-title">Thunderbird Resorts & Casinos - Poro Point</div>
                             <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando, La Union</div>
-                            <p class="card-desc">Luxury Santorini-inspired oceanfront resort featuring world-class amenities, golf course, and pool views.</p>
+                            <p class="card-desc">Luxury Santorini-inspired oceanfront resort featuring world-class amenities, a golf course, and pool views.</p>
                             <div class="card-footer">
-                                <span style="font-weight: 800; color: var(--accent-teal); font-size: 0.9rem;">₱8,500 <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ night</small></span>
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.8 (912 reviews)</span>
                                 <span class="card-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
                             </div>
                         </div>
@@ -1450,7 +1450,7 @@
                             <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan, La Union</div>
                             <p class="card-desc">Modern beachside resort offering private balcony suites overlooking the famous San Juan surfing coast.</p>
                             <div class="card-footer">
-                                <span style="font-weight: 800; color: var(--accent-teal); font-size: 0.9rem;">₱3,500 <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ night</small></span>
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.6 (421 reviews)</span>
                                 <span class="card-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
                             </div>
                         </div>
@@ -1463,11 +1463,11 @@
                             <button class="change-photo-btn" onclick="triggerPhotoUpload('h-img-3')"><i class="fa-solid fa-camera"></i> Change</button>
                         </div>
                         <div class="card-body">
-                            <div class="card-title">Aureo Resort La Union</div>
+                            <div class="card-title">Aureo La Union</div>
                             <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando, La Union</div>
                             <p class="card-desc">Sprawling beachfront resort with luxury villas, multiple infinity pools, and sunset dining facilities.</p>
                             <div class="card-footer">
-                                <span style="font-weight: 800; color: var(--accent-teal); font-size: 0.9rem;">₱6,200 <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ night</small></span>
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.7 (780 reviews)</span>
                                 <span class="card-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
                             </div>
                         </div>
@@ -1497,7 +1497,7 @@
                 <div class="card-grid">
                     <div class="card">
                         <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" class="card-img" id="fd-img-1" alt="Local Cuisine">
+                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" class="card-img" id="fd-img-1" alt="Halo-Halo de Iloko">
                             <button class="change-photo-btn" onclick="triggerPhotoUpload('fd-img-1')"><i class="fa-solid fa-camera"></i> Change</button>
                         </div>
                         <div class="card-body">
@@ -1523,11 +1523,11 @@
 
                     <div class="card">
                         <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80" class="card-img" id="fd-img-3" alt="Seafood">
+                            <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80" class="card-img" id="fd-img-3" alt="Tagpuan sa San Juan">
                             <button class="change-photo-btn" onclick="triggerPhotoUpload('fd-img-3')"><i class="fa-solid fa-camera"></i> Change</button>
                         </div>
                         <div class="card-body">
-                            <span class="card-badge">Seafood</span>
+                            <span class="card-badge">Local Cuisine</span>
                             <div class="card-title">Tagpuan sa San Juan</div>
                             <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan, La Union</div>
                             <p class="card-desc">Popular budget rice bowls featuring Bagnet, Chicharron, and fresh coastal seafood meals.</p>
@@ -1618,7 +1618,7 @@
                     <div>
                         <div class="detail-box">
                             <h3>About La Union</h3>
-                            <p>La Union is a coastal province located in the Ilocos Region of Luzon, Philippines. Known for its pristine beaches, world-class waves, majestic mountains, and warm, welcoming people, it's a place where nature, culture, and local life come together seamlessy.</p>
+                            <p>La Union is a coastal province located in the Ilocos Region of Luzon, Philippines. Known for its pristine beaches, world-class waves, majestic mountains, and warm, welcoming people, it's a place where nature, culture, and local life come together seamlessly.</p>
                         </div>
 
                         <div class="quick-facts" style="grid-template-columns: repeat(2, 1fr);">
