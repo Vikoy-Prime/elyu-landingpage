@@ -1,1 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover La Union | Official Tourism Portal</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-navy: #0A192F;
+            --secondary-navy: #1E293B;
+            --accent-teal: #0EA5E9;
+            --accent-teal-hover: #0284C7;
+            --accent-light-teal: #E0F2FE;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --bg-light: #F8FAFC;
+            --card-bg: #FFFFFF;
+            --border-color: #E2E8F0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+            --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.04);
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --radius-full: 9999px;
+            --transition: all 0.25s ease;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Header / Navigation --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--primary-navy);
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-teal), #0284C7);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: var(--transition);
+            cursor: pointer;
+            padding: 0.4rem 0.2rem;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-teal);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-teal);
+            border-radius: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-trigger {
+            background: #F1F5F9;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-trigger:hover {
+            background: var(--accent-light-teal);
+            color: var(--accent-teal);
+        }
+
+        .btn-plan {
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 0.55rem 1.25rem;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25);
+        }
+
+        .btn-plan:hover {
+            background-color: var(--accent-teal-hover);
+            transform: translateY(-1px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.3rem;
+            background: none;
+            border: none;
+            color: var(--primary-navy);
+            cursor: pointer;
+        }
+
+        /* --- Main Content Area --- */
+        main {
+            flex: 1;
+        }
+
+        .page-view {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Global Components --- */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-navy);
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .view-all-link {
+            color: var(--accent-teal);
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .view-all-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Filter Pills */
+        .filter-bar {
+            display: flex;
+            gap: 0.6rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            scrollbar-width: thin;
+        }
+
+        .filter-pill {
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius-full);
+            background-color: white;
+            border: 1px solid var(--border-color);
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .filter-pill:hover, .filter-pill.active {
+            background-color: var(--accent-teal);
+            color: white;
+            border-color: var(--accent-teal);
+            box-shadow: 0 4px 10px rgba(14, 165, 233, 0.2);
+        }
+
+        /* Responsive Grid & Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-img-container {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            background-color: #E2E8F0;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .change-photo-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(10, 25, 47, 0.75);
+            backdrop-filter: blur(4px);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 5;
+        }
+
+        .card-img-container:hover .change-photo-btn, .hero-bg:hover .change-photo-btn {
+            opacity: 1;
+        }
+
+        .change-photo-btn:hover {
+            background: var(--accent-teal);
+        }
+
+        .card-body {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 0.2rem;
+        }
+
+        .card-location {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 0.6rem;
+        }
+
+        .card-desc {
+            font-size: 0.825rem;
+            color: #475569;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-badge {
+            align-self: flex-start;
+            background-color: var(--accent-light-teal);
+            color: #0369A1;
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-full);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 0.8rem;
+            border-top: 1px solid #F1F5F9;
+        }
+
+        .card-rating {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .card-rating i {
+            color: #F59E0B;
+        }
+
+        .card-link {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            cursor: pointer;
+        }
+
+        /* --- PAGE 1: HOME PAGE --- */
+        .hero {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            height: 480px;
+            display: flex;
+            align-items: center;
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(10, 25, 47, 0.85) 0%, rgba(10, 25, 47, 0.3) 70%, rgba(10, 25, 47, 0) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 550px;
+            padding: 3rem;
+        }
+
+        .hero-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text {
+            font-size: 0.95rem;
+            color: #CBD5E1;
+            margin-bottom: 1.8rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-teal);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-teal-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Categories Bar */
+        .category-bar {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-item {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 1.25rem 0.8rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .category-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-teal);
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent-light-teal);
+            color: var(--accent-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .category-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+        }
+
+        /* Double Banner Promo */
+        .promo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .promo-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .promo-img {
+            width: 110px;
+            height: 110px;
+            border-radius: var(--radius-md);
+            object-fit: cover;
+        }
+
+        .promo-info h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary-navy);
+            margin-bottom: 0.4rem;
+        }
+
+        .promo-info p {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* --- PAGE 2: DESTINATIONS & SEARCH --- */
+        .search-hero {
+            background: linear-gradient(135deg, var(--primary-navy), #0284C7);
+            border-radius: var(--radius-lg);
+            padding: 3.5rem 2rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-hero p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 1.8rem;
+        }
+
+        .search-box {
+            max-width: 580px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            padding-right: 3.5rem;
+            border-radius: var(--radius-full);
+            border: none;
+            font-size: 0.95rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            outline: none;
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: var(--accent-teal);
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* --- PAGE 4: SPOT DETAIL PAGE --- */
+        .detail-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .back-btn {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-teal);
+        }
+
+        .detail-banner {
+            position: relative;
+            height: 380px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .detail-banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-banner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(0deg, rgba(10,25,47,0.9) 0%, rgba(10,25,47,0) 100%);
+            color: white;
+        }
+
+        .detail-banner-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+
+        .detail-banner-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .detail-box {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 1.8rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-box h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary-navy);
+            margin-bottom: 0.8rem;
+        }
+
+        .detail-box p {
+            color: #475569;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .fact-card {
+            background: white;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .fact-card i {
+            color: var(--accent-teal);
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .fact-card h4 {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .fact-card p {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+        }
+
+        .photo-gallery-mini {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .gallery-mini-img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+        }
+
+        /* --- PAGE 7: SAN FERNANDO GUIDE --- */
+        .city-hero {
+            background: linear-gradient(rgba(10,25,47,0.7), rgba(10,25,47,0.7)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center/cover;
+            border-radius: var(--radius-lg);
+            padding: 3.5rem 2rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .city-map-container {
+            background: #E2E8F0;
+            border-radius: var(--radius-lg);
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-navy);
+            color: #94A3B8;
+            padding: 3.5rem 1.5rem 1.5rem 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid #1E293B;
+        }
+
+        .footer-brand {
+            color: white;
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-desc {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            max-width: 320px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .social-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #1E293B;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            background: var(--accent-teal);
+        }
+
+        .footer-column h4 {
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        /* Global Hidden Upload Input */
+        #global-file-input {
+            display: none;
+        }
+
+        /* --- RESPONSIVE BREAKPOINTS --- */
+        @media (max-width: 1024px) {
+            .category-bar {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .promo-grid {
+                grid-template-columns: 1fr;
+            }
+            .detail-layout {
+                grid-template-columns: 1fr;
+            }
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Mobile Menu toggle required */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1.5rem;
+                box-shadow: var(--shadow-md);
+                border-bottom: 1px solid var(--border-color);
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .hero {
+                height: auto;
+                min-height: 400px;
+            }
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .hero-content {
+                padding: 2rem 1.5rem;
+            }
+            .category-bar {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .quick-facts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hidden File Input for Image Replacement -->
+    <input type="file" id="global-file-input" accept="image/*">
+
+    <!-- HEADER / NAVIGATION -->
+    <header>
+        <div class="nav-container">
+            <div class="logo" onclick="switchPage('home-page')">
+                <div class="logo-icon"><i class="fa-solid fa-waves"></i></div>
+                <span>La Union</span>
+            </div>
+
+            <button class="mobile-toggle" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars"></i></button>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a class="nav-link active" onclick="switchPage('home-page')">Home</a></li>
+                <li><a class="nav-link" onclick="switchPage('destinations-page')">Destinations</a></li>
+                <li><a class="nav-link" onclick="switchPage('spots-page')">Tourist Spots</a></li>
+                <li><a class="nav-link" onclick="switchPage('hotels-page')">Hotels & Stays</a></li>
+                <li><a class="nav-link" onclick="switchPage('dining-page')">Food & Dining</a></li>
+                <li><a class="nav-link" onclick="switchPage('san-fernando-page')">San Fernando</a></li>
+                <li><a class="nav-link" onclick="switchPage('about-page')">About</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="search-trigger" onclick="switchPage('destinations-page')"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="btn-plan" onclick="switchPage('spots-page')">Plan Your Trip <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- PAGE 1: HOME PAGE -->
+        <section id="home-page" class="page-view active">
+            <div class="container">
+                <div class="hero">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="San Juan Surfing Beach" class="hero-bg" id="hero-img">
+                    <button class="change-photo-btn" onclick="triggerPhotoUpload('hero-img')"><i class="fa-solid fa-camera"></i> Change Photo</button>
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <div class="hero-subtitle">Explore</div>
+                        <h1 class="hero-title">La Union</h1>
+                        <p class="hero-text">Beaches, surf, scenic views, local flavors, and unforgettable adventures along the coastal heart of Northern Luzon.</p>
+                        <button class="btn-primary" onclick="switchPage('spots-page')">Explore Now <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Top Tourist Spots Featured -->
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Top Tourist Spots</h2>
+                        <div class="section-subtitle">Discover the premier attractions across La Union</div>
+                    </div>
+                    <a class="view-all-link" onclick="switchPage('spots-page')">View All <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+
+                <div class="card-grid">
+                    <!-- Card 1 -->
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-1" alt="San Juan Surf Beach">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('spot-img-1')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">San Juan Surf Beach</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan, La Union</div>
+                            <p class="card-desc">Surfing, beach vibes and laid-back cafes by the coast. Capital of Northern Luzon surf culture.</p>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.8 (1.2k)</span>
+                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-2" alt="Tangadan Falls">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('spot-img-2')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Tangadan Falls</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Gabriel, La Union</div>
+                            <p class="card-desc">A refreshing waterfall surrounded by lush nature, cliff jumping, and bamboo raft adventures.</p>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.7 (892)</span>
+                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-3" alt="Baluarte Watchtower">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('spot-img-3')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Baluarte Watchtower</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> Bacnotan / Luna, La Union</div>
+                            <p class="card-desc">A historic Spanish-era watchtower site with panoramic oceanfront views and pebble stone shores.</p>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.6 (654)</span>
+                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explore by Category -->
+                <div class="section-header" style="margin-top: 3.5rem;">
+                    <div>
+                        <h2 class="section-title">Explore by Category</h2>
+                        <div class="section-subtitle">Find activities tailored to your travel preference</div>
+                    </div>
+                </div>
+
+                <div class="category-bar">
+                    <div class="category-item" onclick="switchPage('spots-page')">
+                        <div class="category-icon"><i class="fa-solid fa-umbrella-beach"></i></div>
+                        <div class="category-name">Beaches</div>
+                    </div>
+                    <div class="category-item" onclick="switchPage('spots-page')">
+                        <div class="category-icon"><i class="fa-solid fa-water"></i></div>
+                        <div class="category-name">Surfing</div>
+                    </div>
+                    <div class="category-item" onclick="switchPage('spots-page')">
+                        <div class="category-icon"><i class="fa-solid fa-water-fall"></i></div>
+                        <div class="category-name">Waterfalls</div>
+                    </div>
+                    <div class="category-item" onclick="switchPage('spots-page')">
+                        <div class="category-icon"><i class="fa-solid fa-mountain"></i></div>
+                        <div class="category-name">Mountains</div>
+                    </div>
+                    <div class="category-item" onclick="switchPage('dining-page')">
+                        <div class="category-icon"><i class="fa-solid fa-utensils"></i></div>
+                        <div class="category-name">Food</div>
+                    </div>
+                    <div class="category-item" onclick="switchPage('san-fernando-page')">
+                        <div class="category-icon"><i class="fa-solid fa-landmark"></i></div>
+                        <div class="category-name">Culture</div>
+                    </div>
+                </div>
+
+                <!-- Promo Banners Grid -->
+                <div class="promo-grid">
+                    <div class="promo-card">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300&q=80" class="promo-img" id="promo-img-1" alt="Discover La Union">
+                        <div class="promo-info">
+                            <h3>Discover La Union</h3>
+                            <p>From world-class waves to tranquil mountains, La Union offers a perfect blend of nature, culture, and local charm.</p>
+                            <button class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.8rem;" onclick="switchPage('about-page')">Learn More <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="promo-card">
+                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=300&q=80" class="promo-img" id="promo-img-2" alt="Plan Your Trip">
+                        <div class="promo-info">
+                            <h3>Plan Your Trip</h3>
+                            <p>Ready to explore La Union? Book beachfront resorts, find local dining gems, and curate your personalized itinerary.</p>
+                            <button class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.8rem;" onclick="switchPage('destinations-page')">Start Exploring <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: DESTINATIONS & SEARCH -->
+        <section id="destinations-page" class="page-view">
+            <div class="container">
+                <div class="search-hero">
+                    <h1>Discover La Union</h1>
+                    <p>Explore beautiful destinations, hidden gems, and unforgettable experiences across the province.</p>
+                    <div class="search-box">
+                        <input type="text" id="dest-search-input" placeholder="Search destinations, beaches, waterfalls..." onkeyup="filterDestinations()">
+                        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
+
+                <div class="filter-bar">
+                    <button class="filter-pill active" onclick="filterCategory('all', this)">All</button>
+                    <button class="filter-pill" onclick="filterCategory('beaches', this)">Beaches</button>
+                    <button class="filter-pill" onclick="filterCategory('waterfalls', this)">Waterfalls</button>
+                    <button class="filter-pill" onclick="filterCategory('mountains', this)">Mountains</button>
+                    <button class="filter-pill" onclick="filterCategory('cultural', this)">Cultural</button>
+                    <button class="filter-pill" onclick="filterCategory('adventure', this)">Adventure</button>
+                    <button class="filter-pill" onclick="filterCategory('food', this)">Food</button>
+                </div>
+
+                <div class="card-grid" id="destinations-grid">
+                    <!-- Item 1 -->
+                    <div class="card dest-card" data-category="beaches">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80" class="card-img" id="d-img-1" alt="San Juan Surf Beach">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('d-img-1')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Beach</span>
+                            <div class="card-title">San Juan Surf Beach</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan, La Union</div>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.8 (1.2k reviews)</span>
+                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="card dest-card" data-category="waterfalls">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=600&q=80" class="card-img" id="d-img-2" alt="Tangadan Falls">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('d-img-2')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Waterfall</span>
+                            <div class="card-title">Tangadan Falls</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Gabriel, La Union</div>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.7 (892 reviews)</span>
+                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="card dest-card" data-category="cultural">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=600&q=80" class="card-img" id="d-img-3" alt="Baluarte Watchtower">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('d-img-3')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Cultural</span>
+                            <div class="card-title">Baluarte Watchtower</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> Luna, La Union</div>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.6 (654 reviews)</span>
+                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="card dest-card" data-category="beaches">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" class="card-img" id="d-img-4" alt="Poro Point">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('d-img-4')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Beach</span>
+                            <div class="card-title">Poro Point</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando, La Union</div>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.5 (542 reviews)</span>
+                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="card dest-card" data-category="cultural">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80" class="card-img" id="d-img-5" alt="Ma-Cho Temple">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('d-img-5')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Cultural</span>
+                            <div class="card-title">Ma-Cho Temple</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando, La Union</div>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.8 (821 reviews)</span>
+                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="card dest-card" data-category="beaches">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80" class="card-img" id="d-img-6" alt="Immuki Island">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('d-img-6')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Beach</span>
+                            <div class="card-title">Immuki Island</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> Balaoan, La Union</div>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.5 (312 reviews)</span>
+                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: TOURIST SPOTS -->
+        <section id="spots-page" class="page-view">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Tourist Spots</h2>
+                        <div class="section-subtitle">Explore the best places to visit in La Union.</div>
+                    </div>
+                </div>
+
+                <div class="filter-bar">
+                    <button class="filter-pill active">All</button>
+                    <button class="filter-pill">Beaches</button>
+                    <button class="filter-pill">Waterfalls</button>
+                    <button class="filter-pill">Mountains</button>
+                    <button class="filter-pill">Cultural</button>
+                </div>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80" class="card-img" id="ts-img-1" alt="San Juan Beach">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('ts-img-1')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Beach</span>
+                            <div class="card-title">San Juan Surf Beach</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan, La Union</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=600&q=80" class="card-img" id="ts-img-2" alt="Tangadan Falls">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('ts-img-2')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Waterfall</span>
+                            <div class="card-title">Tangadan Falls</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Gabriel, La Union</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=600&q=80" class="card-img" id="ts-img-3" alt="Baluarte Watchtower">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('ts-img-3')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Cultural</span>
+                            <div class="card-title">Baluarte Watchtower</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> Luna, La Union</div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="background: linear-gradient(135deg, var(--primary-navy), var(--accent-teal)); color: white; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
+                        <div>
+                            <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem;">Explore More Spots in La Union</h3>
+                            <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 1rem;">Discover hidden caves, grape farms, and mountain treks.</p>
+                            <button class="btn-primary" style="background: white; color: var(--primary-navy);" onclick="switchPage('destinations-page')">Browse All</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: TOURIST SPOT DETAIL -->
+        <section id="detail-page" class="page-view">
+            <div class="container">
+                <div class="detail-header-bar">
+                    <div class="back-btn" onclick="switchPage('spots-page')"><i class="fa-solid fa-arrow-left"></i> Back to Tourist Spots</div>
+                </div>
+
+                <div class="detail-banner">
+                    <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=80" id="detail-main-img" class="detail-banner-img" alt="San Juan Surf Beach">
+                    <button class="change-photo-btn" onclick="triggerPhotoUpload('detail-main-img')"><i class="fa-solid fa-camera"></i> Change Cover Photo</button>
+                    <div class="detail-banner-overlay">
+                        <h1 class="detail-banner-title">San Juan Surf Beach</h1>
+                        <div class="detail-banner-meta">
+                            <span><i class="fa-solid fa-location-dot"></i> San Juan, La Union</span>
+                            <span><i class="fa-solid fa-star" style="color:#F59E0B"></i> 4.8 (1,214 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-facts">
+                    <div class="fact-card">
+                        <i class="fa-solid fa-umbrella-beach"></i>
+                        <h4>Category</h4>
+                        <p>Beach / Surf</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fa-solid fa-water"></i>
+                        <h4>Activity</h4>
+                        <p>Surfing & Swimming</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fa-solid fa-utensils"></i>
+                        <h4>Dining</h4>
+                        <p>Food Stalls & Cafes</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fa-solid fa-square-parking"></i>
+                        <h4>Parking</h4>
+                        <p>Available Onsite</p>
+                    </div>
+                </div>
+
+                <div class="detail-layout">
+                    <div>
+                        <div class="detail-box">
+                            <h3>About</h3>
+                            <p>San Juan Surf Beach is the heart of La Union's surfing culture. Known for its consistent waves, laid-back vibe, and stunning sunsets, it's a must-visit for both beginner and experienced surfers alike. The beach strip is lined with vibrant cafes, surf schools, and boutique accommodations.</p>
+                        </div>
+
+                        <div class="detail-box">
+                            <h3>Things to Do</h3>
+                            <p><i class="fa-solid fa-check" style="color:var(--accent-teal)"></i> Surfing lessons with certified local instructors</p>
+                            <p><i class="fa-solid fa-check" style="color:var(--accent-teal)"></i> Watch the breathtaking West Philippine Sea sunset</p>
+                            <p><i class="fa-solid fa-check" style="color:var(--accent-teal)"></i> Try local food & craft beer at beachside cafes</p>
+                            <p><i class="fa-solid fa-check" style="color:var(--accent-teal)"></i> Explore nearby shops, murals, and coffee spots</p>
+                        </div>
+
+                        <div class="detail-box">
+                            <h3>Best Time to Visit</h3>
+                            <p><i class="fa-solid fa-calendar-days" style="color:var(--accent-teal)"></i> <strong>October to April</strong> (Ideal for surfing waves and sunny beach days)</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="detail-box" style="text-align: center;">
+                            <button class="btn-primary" style="width: 100%; justify-content: center; margin-bottom: 1.5rem;"><i class="fa-solid fa-heart"></i> Add to My Itinerary</button>
+                            
+                            <h4 style="font-size: 0.9rem; text-align: left; margin-bottom: 0.5rem; color: var(--primary-navy);">Photo Gallery</h4>
+                            <div class="photo-gallery-mini">
+                                <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=300&q=80" class="gallery-mini-img" alt="Gallery 1">
+                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300&q=80" class="gallery-mini-img" alt="Gallery 2">
+                                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=300&q=80" class="gallery-mini-img" alt="Gallery 3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 5: HOTELS & STAYS -->
+        <section id="hotels-page" class="page-view">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Hotels & Stays</h2>
+                        <div class="section-subtitle">Find the perfect place to rest in La Union.</div>
+                    </div>
+                </div>
+
+                <div class="filter-bar">
+                    <button class="filter-pill active">All</button>
+                    <button class="filter-pill">Resorts</button>
+                    <button class="filter-pill">Homestays</button>
+                    <button class="filter-pill">Hotels</button>
+                    <button class="filter-pill">Guesthouses</button>
+                </div>
+
+                <div class="card-grid">
+                    <!-- Hotel 1 -->
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" class="card-img" id="h-img-1" alt="Thunderbird Resorts">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('h-img-1')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Thunderbird Resorts Poro Point</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando, La Union</div>
+                            <p class="card-desc">Luxury Santorini-inspired oceanfront resort featuring world-class amenities, golf course, and pool views.</p>
+                            <div class="card-footer">
+                                <span style="font-weight: 800; color: var(--accent-teal); font-size: 0.9rem;">₱8,500 <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ night</small></span>
+                                <span class="card-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hotel 2 -->
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" class="card-img" id="h-img-2" alt="Kahal Resort">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('h-img-2')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Kahal Resort</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan, La Union</div>
+                            <p class="card-desc">Modern beachside resort offering private balcony suites overlooking the famous San Juan surfing coast.</p>
+                            <div class="card-footer">
+                                <span style="font-weight: 800; color: var(--accent-teal); font-size: 0.9rem;">₱3,500 <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ night</small></span>
+                                <span class="card-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hotel 3 -->
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80" class="card-img" id="h-img-3" alt="Aureo La Union">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('h-img-3')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Aureo Resort La Union</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando, La Union</div>
+                            <p class="card-desc">Sprawling beachfront resort with luxury villas, multiple infinity pools, and sunset dining facilities.</p>
+                            <div class="card-footer">
+                                <span style="font-weight: 800; color: var(--accent-teal); font-size: 0.9rem;">₱6,200 <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ night</small></span>
+                                <span class="card-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 6: FOOD & DINING -->
+        <section id="dining-page" class="page-view">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Food & Dining</h2>
+                        <div class="section-subtitle">Taste the local flavors of La Union.</div>
+                    </div>
+                </div>
+
+                <div class="filter-bar">
+                    <button class="filter-pill active">All</button>
+                    <button class="filter-pill">Local Cuisine</button>
+                    <button class="filter-pill">Cafes</button>
+                    <button class="filter-pill">Seafood</button>
+                    <button class="filter-pill">Desserts</button>
+                </div>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" class="card-img" id="fd-img-1" alt="Local Cuisine">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('fd-img-1')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Local Cuisine</span>
+                            <div class="card-title">Halo-Halo de Iloko</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando, La Union</div>
+                            <p class="card-desc">Famous for authentic Ilocano dishes, Bagnet, and signature traditional dessert creations.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=600&q=80" class="card-img" id="fd-img-2" alt="El Union Coffee">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('fd-img-2')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Cafes</span>
+                            <div class="card-title">El Union Coffee</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan, La Union</div>
+                            <p class="card-desc">Iconic beachside coffee spot famous for specialty cold brews, horchata, and grilled cheese.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80" class="card-img" id="fd-img-3" alt="Seafood">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('fd-img-3')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Seafood</span>
+                            <div class="card-title">Tagpuan sa San Juan</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan, La Union</div>
+                            <p class="card-desc">Popular budget rice bowls featuring Bagnet, Chicharron, and fresh coastal seafood meals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 7: SAN FERNANDO CITY GUIDE -->
+        <section id="san-fernando-page" class="page-view">
+            <div class="container">
+                <div class="city-hero">
+                    <h1 style="font-size: 2.5rem; font-weight: 800;">San Fernando City</h1>
+                    <p style="font-size: 1rem; opacity: 0.9;">The Capital of La Union</p>
+                </div>
+
+                <div class="filter-bar">
+                    <button class="filter-pill active">Overview</button>
+                    <button class="filter-pill">Places to Visit</button>
+                    <button class="filter-pill">Food</button>
+                    <button class="filter-pill">Reviews</button>
+                </div>
+
+                <div class="detail-box">
+                    <h3>About San Fernando City</h3>
+                    <p>San Fernando City is the capital of La Union, known for its rich history, cultural landmarks, vibrant commercial hubs, and beautiful coastlines. It serves as a great base for exploring nearby attractions, enjoying local markets, and seafood dining.</p>
+                </div>
+
+                <div class="section-header" style="margin-top: 2rem;">
+                    <h2 class="section-title">Must Visit in San Fernando</h2>
+                </div>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80" class="card-img" id="sf-img-1" alt="Ma-Cho Temple">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('sf-img-1')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Ma-Cho Temple</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=600&q=80" class="card-img" id="sf-img-2" alt="Pindangan Ruins">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('sf-img-2')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Pindangan Ruins</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" class="card-img" id="sf-img-3" alt="Poro Point Lighthouse">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('sf-img-3')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">Poro Point Lighthouse</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="city-map-container">
+                    <div style="text-align: center; color: var(--text-muted);">
+                        <i class="fa-solid fa-map-location-dot" style="font-size: 2.5rem; color: var(--accent-teal); margin-bottom: 0.5rem;"></i>
+                        <p style="font-weight: 700; color: var(--primary-navy);">Interactive Map View Coming Soon</p>
+                        <p style="font-size: 0.8rem;">Showing coordinates and routes across San Fernando City</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 8: ABOUT LA UNION -->
+        <section id="about-page" class="page-view">
+            <div class="container">
+                <div class="search-hero" style="background: linear-gradient(135deg, var(--primary-navy), #0F172A); text-align: left; padding: 3rem;">
+                    <h1 style="font-size: 2.5rem; font-weight: 800;">More Than a Destination</h1>
+                    <p style="max-width: 600px; color: #CBD5E1;">Discover the beauty, culture, flavors, and adventure of La Union province.</p>
+                </div>
+
+                <div class="detail-layout" style="margin-top: 2rem;">
+                    <div>
+                        <div class="detail-box">
+                            <h3>About La Union</h3>
+                            <p>La Union is a coastal province located in the Ilocos Region of Luzon, Philippines. Known for its pristine beaches, world-class waves, majestic mountains, and warm, welcoming people, it's a place where nature, culture, and local life come together seamlessy.</p>
+                        </div>
+
+                        <div class="quick-facts" style="grid-template-columns: repeat(2, 1fr);">
+                            <div class="fact-card" style="text-align: left; padding: 1.25rem;">
+                                <i class="fa-solid fa-compass" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                                <h4 style="font-size: 0.9rem; color: var(--primary-navy); text-transform: none; font-weight: 800;">Why Visit</h4>
+                                <p style="font-weight: normal; color: var(--text-muted); font-size: 0.825rem; margin-top: 0.2rem;">Relax, explore, and experience the laid-back charm of La Union.</p>
+                            </div>
+                            <div class="fact-card" style="text-align: left; padding: 1.25rem;">
+                                <i class="fa-solid fa-water" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                                <h4 style="font-size: 0.9rem; color: var(--primary-navy); text-transform: none; font-weight: 800;">Beaches & Surf</h4>
+                                <p style="font-weight: normal; color: var(--text-muted); font-size: 0.825rem; margin-top: 0.2rem;">World-class waves and beautiful coastlines.</p>
+                            </div>
+                            <div class="fact-card" style="text-align: left; padding: 1.25rem;">
+                                <i class="fa-solid fa-tree" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                                <h4 style="font-size: 0.9rem; color: var(--primary-navy); text-transform: none; font-weight: 800;">Nature & Adventure</h4>
+                                <p style="font-weight: normal; color: var(--text-muted); font-size: 0.825rem; margin-top: 0.2rem;">Waterfalls, mountains, and outdoor activities.</p>
+                            </div>
+                            <div class="fact-card" style="text-align: left; padding: 1.25rem;">
+                                <i class="fa-solid fa-utensils" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                                <h4 style="font-size: 0.9rem; color: var(--primary-navy); text-transform: none; font-weight: 800;">Food & Culture</h4>
+                                <p style="font-weight: normal; color: var(--text-muted); font-size: 0.825rem; margin-top: 0.2rem;">Local flavors, heritage sites, and vibrant communities.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="background: linear-gradient(135deg, var(--accent-teal), #0284C7); border-radius: var(--radius-lg); padding: 2rem; color: white; text-align: center;">
+                            <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.8rem;">Start Your La Union Adventure</h3>
+                            <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 1.5rem;">Explore the best destinations, plan your trip, and create unforgettable memories.</p>
+                            <button class="btn-primary" style="background: white; color: var(--primary-navy); width: 100%; justify-content: center;" onclick="switchPage('destinations-page')">Explore Destinations</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div class="footer-brand">
+                    <div class="logo-icon" style="width: 28px; height: 28px; font-size: 0.9rem;"><i class="fa-solid fa-waves"></i></div>
+                    <span>La Union</span>
+                </div>
+                <p class="footer-desc">More Than a Destination. Your official tourism web guide to discovering the best surfing, culture, and nature in La Union, Philippines.</p>
+                <div class="footer-socials">
+                    <a class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                    <a class="social-btn"><i class="fa-brands fa-twitter"></i></a>
+                    <a class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a onclick="switchPage('home-page')">Home</a></li>
+                    <li><a onclick="switchPage('destinations-page')">Destinations</a></li>
+                    <li><a onclick="switchPage('spots-page')">Tourist Spots</a></li>
+                    <li><a onclick="switchPage('about-page')">About La Union</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Categories</h4>
+                <ul class="footer-links">
+                    <li><a onclick="switchPage('spots-page')">Beaches & Surf</a></li>
+                    <li><a onclick="switchPage('spots-page')">Waterfalls</a></li>
+                    <li><a onclick="switchPage('hotels-page')">Hotels & Stays</a></li>
+                    <li><a onclick="switchPage('dining-page')">Food & Dining</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li><a><i class="fa-solid fa-envelope"></i> info@launiontourism.gov.ph</a></li>
+                    <li><a><i class="fa-solid fa-phone"></i> +63 (072) 123-4567</a></li>
+                    <li><a><i class="fa-solid fa-location-dot"></i> San Fernando City, La Union</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>&copy; 2026 La Union Tourism Board. All rights reserved.</span>
+            <span>Designed with UI precision & responsive web standards.</span>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Page Navigation Logic
+        function switchPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Show target page
+            const targetPage = document.getElementById(pageId);
+            if(targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Update Header Nav Links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageId)) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Close Mobile Menu if open
+            document.getElementById('nav-links').classList.remove('show');
+
+            // Scroll top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toggle Mobile Navigation Menu
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('show');
+        }
+
+        // Search Filter for Destinations Page
+        function filterDestinations() {
+            const query = document.getElementById('dest-search-input').value.toLowerCase();
+            const cards = document.querySelectorAll('.dest-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title').innerText.toLowerCase();
+                const location = card.querySelector('.card-location').innerText.toLowerCase();
+                if(title.includes(query) || location.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Category Filter for Pills
+        function filterCategory(category, element) {
+            // Highlight active button pill
+            if(element) {
+                const pills = element.parentElement.querySelectorAll('.filter-pill');
+                pills.forEach(p => p.classList.remove('active'));
+                element.classList.add('active');
+            }
+
+            const cards = document.querySelectorAll('.dest-card');
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if(category === 'all' || cardCat === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Photo Upload / Dynamic Replacement Functionality
+        let currentTargetImgId = null;
+
+        function triggerPhotoUpload(imgElementId) {
+            currentTargetImgId = imgElementId;
+            const fileInput = document.getElementById('global-file-input');
+            fileInput.click();
+        }
+
+        document.getElementById('global-file-input').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if(file && currentTargetImgId) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    const targetImg = document.getElementById(currentTargetImgId);
+                    if(targetImg) {
+                        targetImg.src = evt.target.result;
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
