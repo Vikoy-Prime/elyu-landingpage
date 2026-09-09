@@ -314,35 +314,6 @@
             transform: scale(1.05);
         }
 
-        .change-photo-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(10, 25, 47, 0.75);
-            backdrop-filter: blur(4px);
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            opacity: 0;
-            transition: opacity 0.2s;
-            z-index: 5;
-        }
-
-        .card-img-container:hover .change-photo-btn, .hero-bg:hover .change-photo-btn {
-            opacity: 1;
-        }
-
-        .change-photo-btn:hover {
-            background: var(--accent-teal);
-        }
-
         .card-body {
             padding: 1.25rem;
             display: flex;
@@ -886,11 +857,6 @@
             font-size: 0.8rem;
         }
 
-        /* Global Hidden Upload Input */
-        #global-file-input {
-            display: none;
-        }
-
         /* --- RESPONSIVE BREAKPOINTS --- */
         @media (max-width: 1024px) {
             .category-bar {
@@ -964,9 +930,6 @@
 </head>
 <body>
 
-    <!-- Hidden File Input for Image Replacement -->
-    <input type="file" id="global-file-input" accept="image/*">
-
     <!-- HEADER / NAVIGATION -->
     <header>
         <div class="nav-container">
@@ -1001,7 +964,6 @@
             <div class="container">
                 <div class="hero">
                     <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="San Juan Surfing Beach" class="hero-bg" id="hero-img">
-                    <button class="change-photo-btn" onclick="triggerPhotoUpload('hero-img')"><i class="fa-solid fa-camera"></i> Change Photo</button>
                     <div class="hero-overlay"></div>
                     <div class="hero-content">
                         <div class="hero-subtitle">Explore</div>
@@ -1030,7 +992,7 @@
                         <span class="category-name">Food & Cafes</span>
                     </div>
                     <div class="category-item" onclick="switchPage('spots-page')">
-                        <div class="category-icon"><i class="fa-solid fa-gopurchasely"></i></div>
+                        <div class="category-icon"><i class="fa-solid fa-landmark"></i></div>
                         <span class="category-name">Heritage & Landmarks</span>
                     </div>
                     <div class="category-item" onclick="switchPage('san-fernando-page')">
@@ -1053,7 +1015,6 @@
                     <div class="card">
                         <div class="card-img-container">
                             <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-1" alt="San Juan Surf Beach">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('spot-img-1')"><i class="fa-solid fa-camera"></i> Change</button>
                         </div>
                         <div class="card-body">
                             <div class="card-title">San Juan Surf Beach</div>
@@ -1061,454 +1022,10 @@
                             <p class="card-desc">Surfing, beach vibes, and laid-back cafes by the coast. Capital of Northern Luzon surf culture.</p>
                             <div class="card-footer">
                                 <span class="card-rating"><i class="fa-solid fa-star"></i> 4.8 (1.2k)</span>
-                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                                <span class="card-link" onclick="switchPage('spots-page')">Details <i class="fa-solid fa-chevron-right"></i></span>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Card 2 -->
-                    <div class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-2" alt="Tangadan Falls">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('spot-img-2')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Tangadan Falls</div>
-                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Gabriel, La Union</div>
-                            <p class="card-desc">A refreshing waterfall surrounded by lush nature, cliff jumping, and bamboo raft adventures.</p>
-                            <div class="card-footer">
-                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.7 (892)</span>
-                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-3" alt="Baluarte Watchtower">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('spot-img-3')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Baluarte Watchtower</div>
-                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> Luna, La Union</div>
-                            <p class="card-desc">A historic Spanish-era watchtower made of coral stones standing along the pebble shoreline of Luna.</p>
-                            <div class="card-footer">
-                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.6 (540)</span>
-                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" class="card-img" id="spot-img-4" alt="Ma-Cho Temple">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('spot-img-4')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Ma-Cho Temple</div>
-                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando, La Union</div>
-                            <p class="card-desc">A prominent Taoist temple perched on a cliff overlooking San Fernando Bay with traditional Chinese architecture.</p>
-                            <div class="card-footer">
-                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.7 (730)</span>
-                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Double Banner Promo -->
-                <div class="promo-grid">
-                    <div class="promo-card">
-                        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=300&q=80" class="promo-img" id="promo-img-1" alt="Grape Picking">
-                        <div class="promo-info">
-                            <h3>Bauang Grape Farms</h3>
-                            <p>Pick fresh grapes right off the vine and taste locally crafted fruit wines.</p>
-                            <button class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="switchPage('spots-page')">Explore Experiences</button>
-                        </div>
-                    </div>
-                    <div class="promo-card">
-                        <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=300&q=80" class="promo-img" id="promo-img-2" alt="Poro Point Lighthouse">
-                        <div class="promo-info">
-                            <h3>Poro Point Lighthouse</h3>
-                            <p>Enjoy coastal views, ocean breeze, and iconic sunset photo spots at the peninsula.</p>
-                            <button class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="switchPage('san-fernando-page')">Visit San Fernando</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 2: DESTINATIONS & SEARCH -->
-        <section id="destinations-page" class="page-view">
-            <div class="container">
-                <div class="search-hero">
-                    <h1>Explore La Union Towns</h1>
-                    <p>Find hidden gems, coastal havens, and historic spots across all municipalities.</p>
-                    <div class="search-box">
-                        <input type="text" id="destination-search" placeholder="Search towns, spots, or activities (e.g. San Juan, Falls)..." oninput="filterDestinations()">
-                        <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                </div>
-
-                <div class="filter-bar">
-                    <button class="filter-pill active" onclick="filterCategory('all', this)">All Towns</button>
-                    <button class="filter-pill" onclick="filterCategory('North', this)">North District</button>
-                    <button class="filter-pill" onclick="filterCategory('Central', this)">Central District</button>
-                    <button class="filter-pill" onclick="filterCategory('South', this)">South District</button>
-                </div>
-
-                <div class="card-grid" id="destinations-grid">
-                    <!-- Town Card 1 -->
-                    <div class="card" data-district="North" data-name="San Juan">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80" class="card-img" id="town-img-1" alt="San Juan">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('town-img-1')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-badge">Surf Capital</span>
-                            <div class="card-title">San Juan</div>
-                            <div class="card-location"><i class="fa-solid fa-compass"></i> Northern La Union</div>
-                            <p class="card-desc">Famous for Urbiztondo beach breaks, vibrant nightlife, artisan cafes, and boutique beachfront stays.</p>
-                            <div class="card-footer">
-                                <span class="card-link" onclick="switchPage('spots-page')">Explore Spots <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Town Card 2 -->
-                    <div class="card" data-district="Central" data-name="San Fernando">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" class="card-img" id="town-img-2" alt="San Fernando">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('town-img-2')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-badge">Provincial Capital</span>
-                            <div class="card-title">San Fernando City</div>
-                            <div class="card-location"><i class="fa-solid fa-compass"></i> Central La Union</div>
-                            <p class="card-desc">The commercial and cultural hub featuring Ma-Cho Temple, Poro Point, and botanical gardens.</p>
-                            <div class="card-footer">
-                                <span class="card-link" onclick="switchPage('san-fernando-page')">Explore Guide <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Town Card 3 -->
-                    <div class="card" data-district="South" data-name="Bauang">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80" class="card-img" id="town-img-3" alt="Bauang">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('town-img-3')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-badge">Agri-Tourism</span>
-                            <div class="card-title">Bauang</div>
-                            <div class="card-location"><i class="fa-solid fa-compass"></i> Southern La Union</div>
-                            <p class="card-desc">Home of lush grape orchards, calm sandy beaches, and traditional winemaking heritage.</p>
-                            <div class="card-footer">
-                                <span class="card-link" onclick="switchPage('spots-page')">Explore Spots <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Town Card 4 -->
-                    <div class="card" data-district="North" data-name="Luna">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=600&q=80" class="card-img" id="town-img-4" alt="Luna">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('town-img-4')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-badge">Pebble & Heritage</span>
-                            <div class="card-title">Luna</div>
-                            <div class="card-location"><i class="fa-solid fa-compass"></i> Northern La Union</div>
-                            <p class="card-desc">Known for unique stone beaches, Spanish watchtowers, and Kamay na Bato art gallery.</p>
-                            <div class="card-footer">
-                                <span class="card-link" onclick="switchPage('spots-page')">Explore Spots <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 3: TOURIST SPOTS -->
-        <section id="spots-page" class="page-view">
-            <div class="container">
-                <div class="section-header">
-                    <div>
-                        <h2 class="section-title">All Tourist Spots</h2>
-                        <div class="section-subtitle">Curated places to visit, explore, and experience</div>
-                    </div>
-                </div>
-
-                <div class="card-grid">
-                    <div class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80" class="card-img" id="all-spot-1" alt="San Juan Beach">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('all-spot-1')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">San Juan Surfing Beach</div>
-                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan</div>
-                            <p class="card-desc">Premier surfing destination with lessons for all skill levels and lively beachfront community.</p>
-                            <div class="card-footer">
-                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.8</span>
-                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=600&q=80" class="card-img" id="all-spot-2" alt="Tangadan Falls">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('all-spot-2')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Tangadan Falls</div>
-                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Gabriel</div>
-                            <p class="card-desc">Two-tier cascading waterfall with natural swimming pools and river trekking tours.</p>
-                            <div class="card-footer">
-                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.7</span>
-                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80" class="card-img" id="all-spot-3" alt="Grape Farms">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('all-spot-3')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Lomboy Grape Farm</div>
-                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> Bauang</div>
-                            <p class="card-desc">The pioneer grape vineyard offering seasonal pick-and-pay experiences and farm tours.</p>
-                            <div class="card-footer">
-                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.5</span>
-                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=600&q=80" class="card-img" id="all-spot-4" alt="Baluarte">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('all-spot-4')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">Baluarte Watchtower</div>
-                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> Luna</div>
-                            <p class="card-desc">Restored 19th-century defense tower along a striking coastal pebble field.</p>
-                            <div class="card-footer">
-                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.6</span>
-                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 4: SPOT DETAIL PAGE -->
-        <section id="detail-page" class="page-view">
-            <div class="container">
-                <div class="detail-header-bar">
-                    <span class="back-btn" onclick="switchPage('spots-page')"><i class="fa-solid fa-arrow-left"></i> Back to Tourist Spots</span>
-                </div>
-
-                <div class="detail-banner">
-                    <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=80" alt="San Juan Surf Beach Detail" class="detail-banner-img" id="detail-hero-img">
-                    <button class="change-photo-btn" onclick="triggerPhotoUpload('detail-hero-img')"><i class="fa-solid fa-camera"></i> Change Photo</button>
-                    <div class="detail-banner-overlay">
-                        <h1 class="detail-banner-title">San Juan Surf Beach</h1>
-                        <div class="detail-banner-meta">
-                            <span><i class="fa-solid fa-location-dot"></i> San Juan, La Union</span>
-                            <span><i class="fa-solid fa-star" style="color: #F59E0B;"></i> 4.8 (1,240 Reviews)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="quick-facts">
-                    <div class="fact-card">
-                        <i class="fa-solid fa-clock"></i>
-                        <h4>Best Time</h4>
-                        <p>Oct - May</p>
-                    </div>
-                    <div class="fact-card">
-                        <i class="fa-solid fa-ticket"></i>
-                        <h4>Entrance</h4>
-                        <p>Free Entry</p>
-                    </div>
-                    <div class="fact-card">
-                        <i class="fa-solid fa-water"></i>
-                        <h4>Surf Level</h4>
-                        <p>Beginner to Pro</p>
-                    </div>
-                    <div class="fact-card">
-                        <i class="fa-solid fa-car"></i>
-                        <h4>Parking</h4>
-                        <p>Available</p>
-                    </div>
-                </div>
-
-                <div class="detail-layout">
-                    <div>
-                        <div class="detail-box">
-                            <h3>Overview</h3>
-                            <p>San Juan is acclaimed as the Surfing Capital of Northern Luzon. The long sandy beach offers consistent wave swells suitable for first-time surfers as well as seasoned riders. Along the main strip, visitors will find a vibrant coastal community filled with specialty coffee shops, eco-friendly resorts, and fusion dining options.</p>
-                        </div>
-
-                        <div class="detail-box">
-                            <h3>Photo Gallery</h3>
-                            <div class="photo-gallery-mini">
-                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300&q=80" class="gallery-mini-img" id="gal-1" onclick="triggerPhotoUpload('gal-1')">
-                                <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=300&q=80" class="gallery-mini-img" id="gal-2" onclick="triggerPhotoUpload('gal-2')">
-                                <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=300&q=80" class="gallery-mini-img" id="gal-3" onclick="triggerPhotoUpload('gal-3')">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="detail-box">
-                            <h3>Location & Contact</h3>
-                            <p><strong>Address:</strong> Urbiztondo, San Juan, La Union</p>
-                            <p style="margin-top: 0.5rem;"><strong>Local Tourism:</strong> +63 (072) 607-1234</p>
-                            <button class="btn-primary" style="width: 100%; margin-top: 1rem; justify-content: center;" onclick="alert('Directions feature integrated with map view!')"><i class="fa-solid fa-location-arrow"></i> Get Directions</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 5: HOTELS & STAYS -->
-        <section id="hotels-page" class="page-view">
-            <div class="container">
-                <div class="section-header">
-                    <div>
-                        <h2 class="section-title">Hotels & Accommodations</h2>
-                        <div class="section-subtitle">Comfortable stays from beachfront resorts to cozy hostels</div>
-                    </div>
-                </div>
-
-                <div class="card-grid">
-                    <div class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" class="card-img" id="hotel-1" alt="Kahuna Resort">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('hotel-1')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-badge">Beachfront Resort</span>
-                            <div class="card-title">Kahuna Beach Resort</div>
-                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan</div>
-                            <p class="card-desc">Balinese-inspired cottages right on Urbiztondo beach with swimming pools and restaurant.</p>
-                            <div class="card-footer">
-                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.7</span>
-                                <span class="card-link">Book Stay <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" class="card-img" id="hotel-2" alt="Aureo Resort">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('hotel-2')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-badge">Luxury Stay</span>
-                            <div class="card-title">Aureo Resort La Union</div>
-                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando</div>
-                            <p class="card-desc">Upscale seaside villas featuring infinity pools, lazy rivers, and tranquil sunset views.</p>
-                            <div class="card-footer">
-                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.8</span>
-                                <span class="card-link">Book Stay <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 6: FOOD & DINING -->
-        <section id="dining-page" class="page-view">
-            <div class="container">
-                <div class="section-header">
-                    <div>
-                        <h2 class="section-title">Food & Dining</h2>
-                        <div class="section-subtitle">Savor local Ilocano dishes, beachside cafes, and modern dining</div>
-                    </div>
-                </div>
-
-                <div class="card-grid">
-                    <div class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80" class="card-img" id="food-1" alt="El Union Coffee">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('food-1')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-badge">Coffee & Dessert</span>
-                            <div class="card-title">El Union Coffee</div>
-                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Juan</div>
-                            <p class="card-desc">Famous for specialty cold brews, horchata, and grilled skillet s'mores by the beach.</p>
-                            <div class="card-footer">
-                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.9</span>
-                                <span class="card-link">View Menu <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" class="card-img" id="food-2" alt="Halo Halo De Iloko">
-                            <button class="change-photo-btn" onclick="triggerPhotoUpload('food-2')"><i class="fa-solid fa-camera"></i> Change</button>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-badge">Local Ilocano Cuisine</span>
-                            <div class="card-title">Halo-Halo de Iloko</div>
-                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando</div>
-                            <p class="card-desc">Authentic local dining renowned for its rich halo-halo, okoy, bagnet, and traditional decor.</p>
-                            <div class="card-footer">
-                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.7</span>
-                                <span class="card-link">View Menu <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 7: SAN FERNANDO GUIDE -->
-        <section id="san-fernando-page" class="page-view">
-            <div class="container">
-                <div class="city-hero">
-                    <h1 style="font-size: 2.5rem; font-weight: 800;">San Fernando City Guide</h1>
-                    <p style="margin-top: 0.5rem; font-size: 1rem; opacity: 0.9;">Capital City of La Union — Heritage, Commerce, and Coastline</p>
-                </div>
-
-                <div class="detail-box">
-                    <h3>City Overview</h3>
-                    <p>San Fernando City serves as the administrative, financial, and educational center of the Ilocos Region. Perched on San Fernando Bay, it provides an exquisite mix of vibrant city life, cultural landmarks like Ma-Cho Temple, and coastal recreation spots around Poro Point Special Economic and Freeport Zone.</p>
-                </div>
-
-                <div class="detail-box">
-                    <h3>Interactive Map Overview</h3>
-                    <div class="city-map-container">
-                        <div style="text-align: center; color: var(--text-muted);">
-                            <i class="fa-solid fa-map-location-dot" style="font-size: 3rem; color: var(--accent-teal); margin-bottom: 0.5rem;"></i>
-                            <p style="font-weight: 700; color: var(--primary-navy);">San Fernando City Map View</p>
-                            <p style="font-size: 0.85rem;">Ma-Cho Temple • Poro Point Light • Botanical Garden • City Plaza</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 8: ABOUT -->
-        <section id="about-page" class="page-view">
-            <div class="container">
-                <div class="detail-box" style="padding: 3rem; text-align: center; max-width: 800px; margin: 0 auto;">
-                    <div class="logo-icon" style="width: 50px; height: 50px; font-size: 1.5rem; margin: 0 auto 1.2rem auto;"><i class="fa-solid fa-waves"></i></div>
-                    <h2 style="font-size: 2rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 1rem;">About Discover La Union</h2>
-                    <p style="font-size: 0.95rem; line-height: 1.7; color: #475569;">Welcome to the official digital portal for La Union province. Our platform is designed to connect travelers with the rich heritage, scenic beaches, natural waterfalls, and local culinary treasures across all municipalities of Northern Luzon's coastal gemstone.</p>
                 </div>
             </div>
         </section>
@@ -1520,154 +1037,39 @@
         <div class="footer-container">
             <div>
                 <div class="footer-brand">
-                    <div class="logo-icon" style="width: 28px; height: 28px; font-size: 0.85rem;"><i class="fa-solid fa-waves"></i></div>
-                    <span>Discover La Union</span>
+                    <i class="fa-solid fa-waves"></i> Discover La Union
                 </div>
-                <p class="footer-desc">Your comprehensive travel guide to beaches, surfing, heritage, and local experiences across La Union, Philippines.</p>
+                <p class="footer-desc">Your official tourism guide to the Surfing Capital of Northern Luzon.</p>
                 <div class="footer-socials">
-                    <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="social-btn"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+                    <a class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                    <a class="social-btn"><i class="fa-brands fa-twitter"></i></a>
                 </div>
-            </div>
-
-            <div class="footer-column">
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a onclick="switchPage('home-page')">Home</a></li>
-                    <li><a onclick="switchPage('destinations-page')">Destinations</a></li>
-                    <li><a onclick="switchPage('spots-page')">Tourist Spots</a></li>
-                    <li><a onclick="switchPage('hotels-page')">Hotels & Stays</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
-                <h4>Categories</h4>
-                <ul class="footer-links">
-                    <li><a onclick="switchPage('spots-page')">Surf & Beaches</a></li>
-                    <li><a onclick="switchPage('spots-page')">Waterfalls & Trekking</a></li>
-                    <li><a onclick="switchPage('dining-page')">Food & Cafes</a></li>
-                    <li><a onclick="switchPage('san-fernando-page')">San Fernando Guide</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
-                <h4>Emergency Contact</h4>
-                <ul class="footer-links">
-                    <li><span style="font-size: 0.85rem;">Tourism Hotline: (072) 888-2000</span></li>
-                    <li><span style="font-size: 0.85rem;">Provincial Police: 117</span></li>
-                    <li><span style="font-size: 0.85rem;">Email: info@launion.gov.ph</span></li>
-                </ul>
             </div>
         </div>
-
         <div class="footer-bottom">
-            <span>&copy; 2026 Provincial Government of La Union. All rights reserved.</span>
-            <span>Official Tourism & Travel Portal</span>
+            <p>&copy; 2026 Discover La Union. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // --- Navigation Page Switcher ---
         function switchPage(pageId) {
             const pages = document.querySelectorAll('.page-view');
             pages.forEach(page => page.classList.remove('active'));
-
+            
             const targetPage = document.getElementById(pageId);
-            if (targetPage) {
+            if(targetPage) {
                 targetPage.classList.add('active');
             }
 
-            // Update Nav Links Active Class
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => link.classList.remove('active'));
-            
-            // Map pageId to link index
-            const pageMap = {
-                'home-page': 0,
-                'destinations-page': 1,
-                'spots-page': 2,
-                'hotels-page': 3,
-                'dining-page': 4,
-                'san-fernando-page': 5,
-                'about-page': 6
-            };
-            
-            if (pageMap[pageId] !== undefined && navLinks[pageMap[pageId]]) {
-                navLinks[pageMap[pageId]].classList.add('active');
-            }
-
-            // Scroll to top
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => link.classList.remove('active'));
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Close mobile menu if open
-            document.getElementById('nav-links').classList.remove('show');
         }
 
-        // --- Mobile Menu Toggle ---
         function toggleMobileMenu() {
             const navLinks = document.getElementById('nav-links');
             navLinks.classList.toggle('show');
-        }
-
-        // --- Photo Replacement Handler ---
-        let currentTargetImgId = null;
-
-        function triggerPhotoUpload(imgId) {
-            currentTargetImgId = imgId;
-            const fileInput = document.getElementById('global-file-input');
-            fileInput.click();
-        }
-
-        document.getElementById('global-file-input').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file && currentTargetImgId) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const targetImg = document.getElementById(currentTargetImgId);
-                    if (targetImg) {
-                        targetImg.src = e.target.result;
-                    }
-                };
-                reader.readAsDataURL(file);
-            }
-            // Reset input so same file can be selected again if needed
-            this.value = '';
-        });
-
-        // --- Destination Filter & Search Functions ---
-        function filterDestinations() {
-            const searchInput = document.getElementById('destination-search').value.toLowerCase();
-            const cards = document.querySelectorAll('#destinations-grid .card');
-
-            cards.forEach(card => {
-                const townName = card.getAttribute('data-name').toLowerCase();
-                const textContent = card.textContent.toLowerCase();
-                if (townName.includes(searchInput) || textContent.includes(searchInput)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        function filterCategory(district, btnElement) {
-            // Update active pill button
-            const pills = document.querySelectorAll('.filter-pill');
-            pills.forEach(p => p.classList.remove('active'));
-            if(btnElement) btnElement.classList.add('active');
-
-            const cards = document.querySelectorAll('#destinations-grid .card');
-            cards.forEach(card => {
-                const cardDistrict = card.getAttribute('data-district');
-                if (district === 'all' || cardDistrict === district) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
         }
     </script>
 </body>
