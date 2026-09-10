@@ -335,7 +335,7 @@
             z-index: 5;
         }
 
-        .card-img-container:hover .change-photo-btn, .hero-bg:hover .change-photo-btn {
+        .card-img-container:hover .change-photo-btn, .hero-bg:hover .change-photo-btn, .hero:hover .change-photo-btn {
             opacity: 1;
         }
 
@@ -434,6 +434,15 @@
             box-shadow: var(--shadow-lg);
         }
 
+        /* Hero Slideshow */
+        .hero-slideshow {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
         .hero-bg {
             position: absolute;
             inset: 0;
@@ -441,6 +450,45 @@
             height: 100%;
             object-fit: cover;
             z-index: 1;
+        }
+
+        .hero-slide {
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-dots {
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .hero-dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-dot.active {
+            background: var(--accent-teal);
+            width: 26px;
+            border-radius: 5px;
         }
 
         .hero-overlay {
@@ -1000,14 +1048,23 @@
         <section id="home-page" class="page-view active">
             <div class="container">
                 <div class="hero">
-                    <img src="images/Hero 1.png" alt="San Juan Surfing Beach" class="hero-bg" id="hero-img">
-                    <button class="change-photo-btn" onclick="triggerPhotoUpload('hero-img')"><i class="fa-solid fa-camera"></i> Change Photo</button>
+                    <div class="hero-slideshow">
+                        <img src="images/Hero 1.png" alt="San Juan Surfing Beach" class="hero-bg hero-slide active" id="hero-img-1">
+                        <img src="images/Hero 2.png" alt="La Union Scenic View" class="hero-bg hero-slide" id="hero-img-2">
+                        <img src="images/Hero 3.png" alt="La Union Coastal View" class="hero-bg hero-slide" id="hero-img-3">
+                    </div>
+                    <button class="change-photo-btn" onclick="triggerPhotoUpload(getCurrentHeroImgId())"><i class="fa-solid fa-camera"></i> Change Photo</button>
                     <div class="hero-overlay"></div>
                     <div class="hero-content">
                         <div class="hero-subtitle">Explore</div>
                         <h1 class="hero-title">ELYU</h1>
                         <p class="hero-text">Beaches, surf, scenic views, local flavors, and unforgettable adventures along the coastal heart of Northern Luzon.</p>
                         <button class="btn-primary" onclick="switchPage('spots-page')">Explore Now <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <div class="hero-dots">
+                        <span class="hero-dot active" onclick="goToHeroSlide(0)"></span>
+                        <span class="hero-dot" onclick="goToHeroSlide(1)"></span>
+                        <span class="hero-dot" onclick="goToHeroSlide(2)"></span>
                     </div>
                 </div>
 
@@ -1250,6 +1307,40 @@
                             <div class="card-location"><i class="fa-solid fa-location-dot"></i> Balaoan, La Union</div>
                             <div class="card-footer">
                                 <span class="card-rating"><i class="fa-solid fa-star"></i> 4.5 (312 reviews)</span>
+                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 7: Bauang Grape Farm -->
+                    <div class="card dest-card" data-category="adventure">
+                        <div class="card-img-container">
+                            <img src="images/Baung Grape Farm.png" class="card-img" id="d-img-7" alt="Bauang Grape Farm">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('d-img-7')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Adventure</span>
+                            <div class="card-title">Bauang Grape Farm</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> Bauang, La Union</div>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.4 (238 reviews)</span>
+                                <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 8: Pindangan Ruins -->
+                    <div class="card dest-card" data-category="cultural">
+                        <div class="card-img-container">
+                            <img src="images/Pindangan Ruins.png" class="card-img" id="d-img-8" alt="Pindangan Ruins">
+                            <button class="change-photo-btn" onclick="triggerPhotoUpload('d-img-8')"><i class="fa-solid fa-camera"></i> Change</button>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-badge">Cultural</span>
+                            <div class="card-title">Pindangan Ruins</div>
+                            <div class="card-location"><i class="fa-solid fa-location-dot"></i> San Fernando, La Union</div>
+                            <div class="card-footer">
+                                <span class="card-rating"><i class="fa-solid fa-star"></i> 4.5 (301 reviews)</span>
                                 <span class="card-link" onclick="switchPage('detail-page')">View Details <i class="fa-solid fa-arrow-right"></i></span>
                             </div>
                         </div>
@@ -1805,6 +1896,45 @@
                 reader.readAsDataURL(file);
             }
         });
+
+        // --- Hero Slideshow Logic ---
+        let currentHeroSlide = 0;
+        const heroSlideCount = 3;
+        let heroIntervalId = null;
+
+        function goToHeroSlide(index) {
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.hero-dot');
+            if(!slides.length) return;
+
+            slides[currentHeroSlide].classList.remove('active');
+            if(dots[currentHeroSlide]) dots[currentHeroSlide].classList.remove('active');
+
+            currentHeroSlide = index;
+
+            slides[currentHeroSlide].classList.add('active');
+            if(dots[currentHeroSlide]) dots[currentHeroSlide].classList.add('active');
+
+            resetHeroAutoplay();
+        }
+
+        function nextHeroSlide() {
+            const nextIndex = (currentHeroSlide + 1) % heroSlideCount;
+            goToHeroSlide(nextIndex);
+        }
+
+        function resetHeroAutoplay() {
+            if(heroIntervalId) clearInterval(heroIntervalId);
+            heroIntervalId = setInterval(nextHeroSlide, 5000);
+        }
+
+        function getCurrentHeroImgId() {
+            const slides = document.querySelectorAll('.hero-slide');
+            return slides[currentHeroSlide] ? slides[currentHeroSlide].id : 'hero-img-1';
+        }
+
+        // Start the hero slideshow autoplay
+        resetHeroAutoplay();
     </script>
 </body>
 </html>
